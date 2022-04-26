@@ -12,7 +12,7 @@ from queue import Queue
 from PIL import Image
 import io
 
-updater = Updater(token="5249487701:AAH0M62sDa5df6CuGYBsBfpNJCrNKl3jXCY")
+updater = Updater(token=TOKEN_PROM)
 dispatcher = updater.dispatcher
 
 welcome_button_yes = "Да, запиши меня! 😎"
