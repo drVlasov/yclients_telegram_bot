@@ -8,7 +8,7 @@ import asyncio
 from pyppeteer import launch
 import io
 
-updater = Updater(token="5249487701:AAH0M62sDa5df6CuGYBsBfpNJCrNKl3jXCY")
+updater = Updater(token=TOKEN)
 dispatcher = updater.dispatcher
 
 welcome_button_yes = "Да, запиши меня! 😎"
