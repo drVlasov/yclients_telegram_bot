@@ -97,7 +97,7 @@ def queryHandler(update: Update, context: CallbackContext):
         image, url_for_approval = new_loop.run_until_complete(functions.apr(int(pick), barber_id))
         url_for_approval = url_for_approval.split("/")[3].split("?")[1]
         #image = Image.open(io.BytesIO(screenshot))
-
+        print(url_for_approval)
         context.bot.sendMediaGroup(chat_id=update.effective_chat.id, media=[InputMediaPhoto(image, caption=approve_caption)])
         context.bot.send_message(chat_id=update.effective_chat.id, text=approve_params,
                                  reply_markup=functions.get_buttons_approve(url_for_approval))

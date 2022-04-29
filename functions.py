@@ -10,6 +10,44 @@ from time import strptime
 locale.setlocale(locale.LC_TIME, 'ru_RU.UTF-8')
 import time
 
+minimal_args = [
+  '--autoplay-policy=user-gesture-required',
+  '--disable-background-networking',
+  '--disable-background-timer-throttling',
+  '--disable-backgrounding-occluded-windows',
+  '--disable-breakpad',
+  '--disable-client-side-phishing-detection',
+  '--disable-component-update',
+  '--disable-default-apps',
+  '--disable-dev-shm-usage',
+  '--disable-domain-reliability',
+  '--disable-extensions',
+  '--disable-features=AudioServiceOutOfProcess',
+  '--disable-hang-monitor',
+  '--disable-ipc-flooding-protection',
+  '--disable-notifications',
+  '--disable-offer-store-unmasked-wallet-cards',
+  '--disable-popup-blocking',
+  '--disable-print-preview',
+  '--disable-prompt-on-repost',
+  '--disable-renderer-backgrounding',
+  '--disable-setuid-sandbox',
+  '--disable-speech-api',
+  '--disable-sync',
+  '--hide-scrollbars',
+  '--ignore-gpu-blacklist',
+  '--metrics-recording-only',
+  '--mute-audio',
+  '--no-default-browser-check',
+  '--no-first-run',
+  '--no-pings',
+  '--no-sandbox',
+  '--no-zygote',
+  '--password-store=basic',
+  '--use-gl=swiftshader',
+  '--use-mock-keychain',
+]
+
 
 async def barbers_list():
     start = time.time()
@@ -19,7 +57,9 @@ async def barbers_list():
         options={
             "handleSIGINT": False,
             "handleSIGTERM": False,
-            "handleSIGHUP": False
+            "handleSIGHUP": False,
+            "headless": True,
+            "args": minimal_args
         })
     context = await browser.createIncognitoBrowserContext()
     page = await context.newPage()
@@ -67,7 +107,9 @@ async def services_list(pick):
         options={
             "handleSIGINT": False,
             "handleSIGTERM": False,
-            "handleSIGHUP": False
+            "handleSIGHUP": False,
+            "headless": True,
+            "args": minimal_args
         })
     context = await browser.createIncognitoBrowserContext()
     page = await context.newPage()
@@ -103,7 +145,7 @@ def get_buttons_services(arr, barber_id):
     kbs = []
     for x in range(len(arr)):
         pick = arr[x]
-        print(pick)
+        #print(pick)
         kbs = kbs + [InlineKeyboardButton(text=arr[x], callback_data=str("service_button_pushed " + str(x) + " " + str(barber_id)))]
     kbs = [[element] for element in kbs]
     keyboard = InlineKeyboardMarkup(inline_keyboard=kbs)
@@ -115,7 +157,7 @@ def date_format(day, month):
 
 
 def date_format_url(date_str):
-    l1 = ['янв', 'фев', 'мар', 'апр', 'май', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек']
+    l1 = ['янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек']
     l2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
     d = dict(zip(l1, l2))
 
@@ -129,12 +171,14 @@ def date_format_url(date_str):
 async def dates_list(pick, barber_id):
     start_time = time.time()
     ### Takes service button pick, url_for_barber_id and returns dates list
-    waitfor = 700
+    waitfor = 1000
     browser = await launch(
         options={
             "handleSIGINT": False,
             "handleSIGTERM": False,
-            "handleSIGHUP": False
+            "handleSIGHUP": False,
+            "headless": True,
+            "args": minimal_args
         })
     context = await browser.createIncognitoBrowserContext()
     page = await context.newPage()
@@ -200,7 +244,9 @@ async def times_list(pick, barber_service_pair):
         options={
             "handleSIGINT": False,
             "handleSIGTERM": False,
-            "handleSIGHUP": False
+            "handleSIGHUP": False,
+            "headless": True,
+            "args": minimal_args
         })
     context = await browser.createIncognitoBrowserContext()
     page = await context.newPage()
@@ -250,7 +296,9 @@ async def apr(pick, url):
         options={
             "handleSIGINT": False,
             "handleSIGTERM": False,
-            "handleSIGHUP": False
+            "handleSIGHUP": False,
+            "headless": True,
+            "args": minimal_args
         })
     context = await browser.createIncognitoBrowserContext()
     page = await context.newPage()
@@ -309,7 +357,9 @@ async def zapisatsa(telephone_number, username, url):
         options={
             "handleSIGINT": False,
             "handleSIGTERM": False,
-            "handleSIGHUP": False
+            "handleSIGHUP": False,
+            "headless": True,
+            "args": minimal_args
         })
     context = await browser.createIncognitoBrowserContext()
     page = await context.newPage()
